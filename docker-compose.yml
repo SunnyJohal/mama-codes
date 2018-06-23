@@ -1,0 +1,64 @@
+version: '3.6'
+
+# Services
+services:
+  # Database Layer
+  db:
+    image: mysql:5.7
+    volumes:
+      - mama_codes_db:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: wtstgblw
+      MYSQL_DATABASE: mama_codes
+      MYSQL_USER: mc_user
+      MYSQL_PASSWORD: xuMc88xEC
+    networks:
+      - mama-codes-network
+
+  # WordPress Frontend
+  wordpress:
+    depends_on:
+      - db
+    image: wordpress:latest
+    ports:
+      - 9009:80
+    restart: always
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_NAME: mama_codes
+      WORDPRESS_DB_USER: mc_user
+      WORDPRESS_DB_PASSWORD: xuMc88xEC
+      WORDPRESS_DEBUG: 1
+      WORDPRESS_TABLE_PREFIX: wp_9z3ryfaq0p_
+    networks: 
+      - mama-codes-network
+    volumes:
+      - ./src/themes:/var/www/html/wp-content/themes
+      - ./src/plugins:/var/www/html/wp-content/plugins
+      - ./src/uploads:/var/www/html/wp-content/uploads
+      - ./src/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
+    links:
+      - db
+
+  # phpMyAdmin
+  phpmyadmin:
+    depends_on:
+      - db
+    image: phpmyadmin/phpmyadmin:latest
+    ports:
+      - 8080:80
+    restart: always
+    environment:
+      PMA_ARBITRARY: 1
+    networks:
+      - mama-codes-network
+    links:
+      - db
+
+volumes:
+  mama_codes_db:
+
+networks:
+  mama-codes-network:
+    driver: bridge
