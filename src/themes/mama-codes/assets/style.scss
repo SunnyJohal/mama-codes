@@ -1,0 +1,14 @@
+// Import external vendor libs.
+@import '../node_modules/bootstrap/scss/bootstrap-grid';
+@import '../node_modules/@material/elevation/dist/mdc.elevation.css';
+
+// Load theme specific components.
+@import 'styles/global-vars';
+@import 'styles/base';
+@import 'styles/typography';
+@import 'styles/header';
+@import 'styles/footer';
+
+// Load plugin specific overrides.
+// Events Calendar custom styles.
+@import 'styles/tribe-events/base';

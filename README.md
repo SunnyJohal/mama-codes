@@ -89,8 +89,11 @@ new BrowserSyncPlugin({
 ## Project Structure
 
 To genrate the tree after updating:
+
+```bash
 pwd=$(pwd)
 find $pwd -print | sed -e "s;$pwd;\.;g;s;[^/]\*\/;|**;g;s;**|; |;g"
+```
 
 ```bash
 .

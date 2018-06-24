@@ -1,31 +1,10 @@
 {
   "env": {
     "development": {
-      "presets": [
-        [
-          "env",
-          {
-            "modules": false,
-            "targets": {
-              "ie9": true
-            }
-          }
-        ]
-      ]
+      "presets": ["env"]
     },
     "production": {
-      "presets": [
-        [
-          "env",
-          {
-            "modules": false,
-            "targets": {
-              "ie9": true,
-              "uglify": true
-            }
-          }
-        ]
-      ]
+      "presets": ["env"]
     }
   }
 }

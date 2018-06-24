@@ -19,10 +19,10 @@ function resolveApp(relativePath) {
 }
 
 const paths = {
-  appSrc: resolveApp('src'),
+  appSrc: resolveApp('assets'),
   appBuild: resolveApp('build'),
-  appIndexJs: resolveApp('src/index.js'),
-  appNodeModules: resolveApp('node_modules'),
+  appIndexJs: resolveApp('assets/index.js'),
+  appNodeModules: resolveApp('node_modules')
 };
 
 const DEV = process.env.NODE_ENV === 'development';
@@ -36,7 +36,7 @@ module.exports = {
   entry: [paths.appIndexJs],
   output: {
     path: paths.appBuild,
-    filename: DEV ? 'bundle.js' : 'bundle.[hash:8].js',
+    filename: DEV ? 'bundle.js' : 'bundle.[hash:8].js'
   },
   module: {
     rules: [
@@ -46,7 +46,7 @@ module.exports = {
       {
         test: /\.js?$/,
         loader: 'babel-loader',
-        include: paths.appSrc,
+        include: paths.appSrc
       },
       {
         test: /.scss$/,
@@ -58,7 +58,7 @@ module.exports = {
               options: {
                 importLoaders: 1,
                 minimize: !DEV
-              },
+              }
             },
             {
               loader: 'postcss-loader',
@@ -70,47 +70,47 @@ module.exports = {
                       '>1%',
                       'last 4 versions',
                       'Firefox ESR',
-                      'not ie < 9', // React doesn't support IE8 anyway
-                    ],
-                  }),
-                ],
-              },
+                      'not ie < 9' // React doesn't support IE8 anyway
+                    ]
+                  })
+                ]
+              }
             },
-            'sass-loader',
-          ],
-        }),
-      },
-    ],
+            'sass-loader'
+          ]
+        })
+      }
+    ]
   },
   plugins: [
     !DEV && new CleanWebpackPlugin(['build']),
     new ExtractTextPlugin(DEV ? 'bundle.css' : 'bundle.[hash:8].css'),
     new webpack.EnvironmentPlugin({
       NODE_ENV: 'development', // use 'development' unless process.env.NODE_ENV is defined
-      DEBUG: false,
+      DEBUG: false
     }),
     new AssetsPlugin({
       path: paths.appBuild,
-      filename: 'assets.json',
+      filename: 'assets.json'
     }),
     !DEV &&
       new webpack.optimize.UglifyJsPlugin({
         compress: {
           screw_ie8: true, // React doesn't support IE8
-          warnings: false,
+          warnings: false
         },
         mangle: {
-          screw_ie8: true,
+          screw_ie8: true
         },
         output: {
           comments: false,
-          screw_ie8: true,
+          screw_ie8: true
         },
-        sourceMap: true,
+        sourceMap: true
       }),
     DEV &&
       new FriendlyErrorsPlugin({
-        clearConsole: false,
+        clearConsole: false
       }),
     DEV &&
       new BrowserSyncPlugin({
@@ -119,7 +119,7 @@ module.exports = {
         port: 4000,
         logLevel: 'silent',
         files: ['./*.php'],
-        proxy: 'http://localhost:9009/',
-      }),
-  ].filter(Boolean),
+        proxy: 'http://localhost:9009/'
+      })
+  ].filter(Boolean)
 };
