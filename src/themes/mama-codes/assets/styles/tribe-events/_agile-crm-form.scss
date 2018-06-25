@@ -1,0 +1,43 @@
+.custom-agile-crm--form {
+  padding: 10px;
+  border: 1px solid #e0e0e0;
+
+  #agile-form {
+    border: none;
+    padding: 0;
+  }
+
+  legend {
+    display: none;
+  }
+
+  .form-view {
+    max-width: 100% !important;
+    font-family: $sans;
+  }
+
+  button.agile-button {
+    background: $mama_green;
+    border: 1px solid $mama_green;
+    padding: 10px 15px;
+    color: rgba(white, 0.87);
+    text-transform: uppercase;
+    font-family: $custom_font;
+    font-weight: bold;
+    width: 100%;
+
+    &:hover {
+      background: darken($mama_green, 8%);
+      border: 1px solid darken($mama_green, 8%);
+    }
+  }
+
+  .agile-field-xlarge {
+    width: 100%;
+  }
+
+  .agile-field.agile-button-field {
+    display: block;
+    width: 100%;
+  }
+}

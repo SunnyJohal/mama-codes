@@ -1,14 +1,21 @@
 // Import external vendor libs.
-@import '../node_modules/bootstrap/scss/bootstrap-grid';
 @import '../node_modules/@material/elevation/dist/mdc.elevation.css';
 
 // Load theme specific components.
 @import 'styles/global-vars';
 @import 'styles/base';
+@import 'styles/layout';
 @import 'styles/typography';
 @import 'styles/header';
+@import 'styles/navigation';
+@import 'styles/title';
 @import 'styles/footer';
 
 // Load plugin specific overrides.
 // Events Calendar custom styles.
 @import 'styles/tribe-events/base';
+@import 'styles/tribe-events/events-list';
+@import 'styles/tribe-events/filter-bar';
+@import 'styles/tribe-events/filter-group';
+@import 'styles/tribe-events/notices';
+@import 'styles/tribe-events/agile-crm-form';

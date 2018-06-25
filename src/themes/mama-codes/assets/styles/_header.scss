@@ -1,3 +1,17 @@
+.header-socials {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.header-socials ul {
+  margin-bottom: 0;
+}
+
+.header-socials li {
+  display: inline-block;
+  font-size: 24px;
+}
+
 .navbar-wrapper {
   padding: 15px;
 }
@@ -8,4 +22,6 @@
 
 header .navbar-header .navbar-brand img {
   max-width: 200px;
+  margin-bottom: -10px;
+  margin-top: 8px;
 }

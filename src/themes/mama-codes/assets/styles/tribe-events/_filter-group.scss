@@ -1,0 +1,33 @@
+#tribe_events_filters_wrapper.tribe-events-filters-horizontal
+  .tribe-events-filters-label,
+.tribe-events-filters-horizontal #tribe_events_filter_control a,
+#tribe-bar-collapse-toggle {
+  font-family: $custom_font;
+  text-transform: uppercase;
+  color: $mama_red;
+}
+
+h3.tribe-events-filters-group-heading {
+  font-family: $sans;
+}
+
+#tribe_events_filters_wrapper .tribe-events-filters-group-heading {
+  font-weight: 400;
+  font-size: 14px;
+  color: rgba(black, 0.64);
+  padding-right: 15px;
+}
+
+#tribe_events_filter_control #tribe_events_filters_toggle {
+  @media (max-width: 768px) {
+    background: transparent;
+    border: none;
+    color: $mama_red;
+  }
+}
+
+#tribe_events_filter_control {
+  @media (max-width: 768px) {
+    margin-bottom: 0;
+  }
+}

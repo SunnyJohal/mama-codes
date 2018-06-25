@@ -1,7 +1,52 @@
+// Footer button styles
+#footer.mc-footer a.btn {
+  text-transform: uppercase;
+  font-family: $custom_font;
+  border-radius: 1px !important;
+  font-size: 12px;
+}
+
+#footer.mc-footer a.btn-success {
+  background: $mama_green;
+  border: 1px solid $mama_green;
+  font-family: 'Brandon Grotesque Medium', 'Roboto', -apple-system,
+    BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+
+  &:hover,
+  &:active {
+    background: darken($mama_green, 8%);
+    border-color: darken($mama_green, 8%);
+  }
+}
+
 #footer.mc-footer {
   padding-top: 45px;
   background: $mama_blue;
   color: rgba(white, 0.87);
+}
+
+#footer .footer-widget-area {
+  background: $mama_blue;
+}
+
+.footer-menu {
+  font-size: 11px;
+}
+
+#footer.mc-footer .footer-socials ul li a {
+  color: rgba(white, 0.64);
+  transition: all 0.2s;
+
+  &:hover {
+    color: rgba(white, 0.87);
+  }
+}
+
+#footer .copyright {
+  margin-top: -10px;
+  font-size: 11px;
+  color: rgba(white, 0.54);
 }
 
 .mc-footer--decoration {

@@ -1,0 +1,58 @@
+.tribe-theme-child-mama-codes #tribe-bar-form {
+  background: #fff;
+  margin-top: -25px !important;
+  box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
+    0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+}
+
+#tribe-bar-form label {
+  font-family: $custom_font;
+}
+
+.label-tribe-bar-date,
+.label-tribe-bar-search,
+.label-tribe-bar-geoloc {
+  color: $mama_red;
+}
+
+.tribe-theme-child-mama-codes #tribe-bar-form input[type='text'] {
+  border-bottom: 1px dotted $mama_primary;
+
+  &:focus {
+    outline: none;
+    border-bottom: 1px solid $mama_primary;
+  }
+}
+
+.tribe-theme-child-mama-codes
+  #tribe-bar-form
+  .tribe-bar-submit
+  input[type='submit'] {
+  background: $mama_green;
+  font-family: $custom_font;
+
+  &:hover {
+    background: darken($mama_green, 8%);
+  }
+}
+
+.tribe-theme-child-mama-codes #tribe-bar-views .tribe-bar-views-inner {
+  background: $mama_green;
+  color: rgba(white, 0.87);
+}
+
+.tribe-theme-child-mama-codes
+  #tribe-bar-views
+  .tribe-bar-views-list
+  .tribe-bar-views-option
+  a {
+  background: $mama_green;
+  color: white;
+}
+
+.tribe-bar-geoloc-filter,
+.tribe-events-uses-geolocation .tribe-bar-date-filter,
+.tribe-events-uses-geolocation .tribe-bar-search-filter,
+.tribe-events-uses-geolocation .tribe-bar-submit {
+  width: 33.3333%;
+}

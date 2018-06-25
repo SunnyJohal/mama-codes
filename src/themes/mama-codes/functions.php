@@ -10,26 +10,60 @@
  * 
  */
 
+ // If this file is called directly, abort.
+if ( ! defined( 'WPINC' ) ) {
+	die;
+}
+
 // Set Content Width (in px).
 if ( ! isset( $content_width ) ) {
   $content_width = 1170;
 }
 
-// Clean up wordpres <head>
-remove_action('wp_head', 'rsd_link'); // remove really simple discovery link
-remove_action('wp_head', 'wp_generator'); // remove wordpress version
-remove_action('wp_head', 'feed_links', 2); // remove rss feed links (make sure you add them in yourself if youre using feedblitz or an rss service)
-remove_action('wp_head', 'feed_links_extra', 3); // removes all extra rss feed links
-remove_action('wp_head', 'index_rel_link'); // remove link to index page
-remove_action('wp_head', 'wlwmanifest_link'); // remove wlwmanifest.xml (needed to support windows live writer)
-remove_action('wp_head', 'start_post_rel_link', 10, 0); // remove random post link
-remove_action('wp_head', 'parent_post_rel_link', 10, 0); // remove parent post link
-remove_action('wp_head', 'adjacent_posts_rel_link', 10, 0); // remove the next and previous post links
-remove_action('wp_head', 'adjacent_posts_rel_link_wp_head', 10, 0);
-remove_action('wp_head', 'wp_shortlink_wp_head', 10, 0);
+/**
+ * Include Class Files
+ *
+ * Loads all of the required classes in
+ * order for this theme to function.
+ *
+ * @since 1.0.0
+ * @version 1.0.0
+ *
+ */
+require( get_stylesheet_directory() . '/includes/admin/class-tt-admin-login.php' );
+require( get_stylesheet_directory() . '/includes/frontend/class-tt-frontend.php' );
+require( get_stylesheet_directory() . '/includes/frontend/class-tt-template.php' );
+require( get_stylesheet_directory() . '/includes/frontend/class-tt-tribe-events.php' );
 
-// Remove parent theme actions
-remove_action( 'wp_enqueue_scripts', 'visualcomposerstarter_inline_styles', 10 );
+
+/**
+ * Setup and Define Theme Support
+ *
+ * Setup and define the features that
+ * this theme supports and loads the
+ * language files if required.
+ *
+ * @since  1.0.0
+ * @version 1.0.0
+ *
+ */
+// Admin
+add_action( 'after_setup_theme', array( 'TT_Admin_Login', 'get_instance' ) );
+
+// Frontend
+add_action( 'after_setup_theme', array( 'TT_Frontend', 'get_instance' ) );
+add_action( 'after_setup_theme', array( 'TT_Template', 'get_instance' ) );
+add_action( 'after_setup_theme', array( 'TT_Tribe_Events', 'get_instance' ) );
+
+/**
+ * Child Theme Specific Changes
+ * 
+ * Adds any additional customizations that
+ * override the parent theme.
+ * 
+ * @since 1.0.0
+ * @version 1.0.0
+ */
 
 /**
  * Add Custom Fonts to <head>
@@ -61,6 +95,23 @@ add_action('wp_head', function() {
  * Theme assets
  */
 add_action('wp_enqueue_scripts', function () {
+
+  // Load default font family
+  $font_families = array(
+    'Roboto:300,300italic,400,400italic,700,700italic',
+  );
+
+  $query_args = array(
+    'family' => implode( '|', $font_families ),
+    'subset' => 'latin,latin-ext',
+  );
+
+  $fonts_url = add_query_arg( $query_args, "https://fonts.googleapis.com/css" );
+
+  if ( ! empty( $fonts_url ) ) {
+    wp_enqueue_style( 'mama-codes-google-fonts', esc_url_raw( $fonts_url ), array(), null );
+  }
+
   // Load parent theme styles
   wp_enqueue_style( 'parent-style', get_template_directory_uri() . '/style.css' );
 
@@ -68,54 +119,11 @@ add_action('wp_enqueue_scripts', function () {
   $main = $manifest->main;
 
   // Load generated child theme styles.
-  wp_enqueue_style('theme-css', get_stylesheet_directory_uri() . "/build/" . $main->css,  false, null);
-  wp_enqueue_script('theme-js', get_stylesheet_directory_uri() . "/build/" . $main->js, ['jquery'], null, true);
+  wp_enqueue_style( 'theme-css', get_stylesheet_directory_uri() . "/build/" . $main->css,  false, null );
+  wp_enqueue_script( 'theme-js', get_stylesheet_directory_uri() . "/build/" . $main->js, ['jquery'], null, true );
+
+  wp_dequeue_style( 'visualcomposerstarter-fonts' );
 }, 100);
-
-
-/**
- * Theme setup
- */
-add_action('after_setup_theme', function () {
-    /**
-     * Enable features from Soil when plugin is activated
-     * @link https://roots.io/plugins/soil/
-     */
-    add_theme_support('soil-clean-up');
-    add_theme_support('soil-jquery-cdn');
-    add_theme_support('soil-nav-walker');
-    add_theme_support('soil-nice-search');
-    add_theme_support('soil-relative-urls');
-    /**
-     * Enable plugins to manage the document title
-     * @link https://developer.wordpress.org/reference/functions/add_theme_support/#title-tag
-     */
-    add_theme_support('title-tag');
-    /**
-     * Register navigation menus
-     * @link https://developer.wordpress.org/reference/functions/register_nav_menus/
-     */
-    register_nav_menus([
-        'primary_navigation' => __('Primary Navigation', 'mini')
-    ]);
-    /**
-     * Enable post thumbnails
-     * @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
-     */
-    add_theme_support('post-thumbnails');
-    /**
-     * Enable HTML5 markup support
-     * @link https://developer.wordpress.org/reference/functions/add_theme_support/#html5
-     */
-    add_theme_support('html5', ['caption', 'comment-form', 'comment-list', 'gallery', 'search-form']);
-    /**
-     * Enable selective refresh for widgets in customizer
-     * @link https://developer.wordpress.org/themes/advanced-topics/customizer-api/#theme-support-in-sidebars
-     */
-    // add_theme_support('customize-selective-refresh-widgets');
-
-
-}, 20);
 
 
 add_action('rest_api_init', function () {
@@ -139,22 +147,4 @@ function get_post_for_url($data) {
   $request    = new WP_REST_Request('GET', "/wp/v2/{$postType}s/{$postId}");
   $request->set_url_params(array('id' => $postId));
   return $controller->get_item($request);
-}
-
-add_filter('body_class', 'add_slug_to_body_class'); // Add slug to body class (Starkers build)
-
-// Add page slug to body class, love this - Credit: Starkers Wordpress Theme
-function add_slug_to_body_class($classes) {
-  global $post;
-  if (is_home()) {
-    $key = array_search('blog', $classes);
-    if ($key > -1) {
-      unset($classes[$key]);
-    }
-  } elseif (is_page()) {
-    $classes[] = sanitize_html_class($post->post_name);
-  } elseif (is_singular()) {
-    $classes[] = sanitize_html_class($post->post_name);
-  }
-  return $classes;
 }

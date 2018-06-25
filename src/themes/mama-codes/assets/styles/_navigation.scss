@@ -1,0 +1,94 @@
+body:not(.menu-sandwich) #main-menu ul li ul {
+  @media screen and (min-width: 900px) {
+    box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
+      0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+  }
+}
+
+#main-menu ul li a {
+  font-size: 18px !important;
+  font-family: 'Brandon Grotesque Regular', $sans;
+  color: $mama_red !important;
+}
+
+#main-menu .dropdown-toggle,
+#main-menu .button-close {
+  color: $mama_primary;
+}
+
+@media (max-width: $md_screen) {
+  body:not(.menu-sandwich) .navbar-header {
+    float: none !important;
+    max-width: 100% !important;
+  }
+
+  body:not(.menu-sandwich) .navbar-toggle {
+    display: block !important;
+  }
+
+  body:not(.menu-sandwich) #main-menu .button-close {
+    display: block !important;
+  }
+
+  body:not(.menu-sandwich) #main-menu > ul {
+    display: block;
+  }
+
+  body:not(.menu-sandwich) #main-menu > ul > li {
+    float: none;
+  }
+
+  body:not(.menu-sandwich) #main-menu > ul > li a {
+    padding: 15px 0;
+  }
+
+  #main-menu {
+    overflow-y: auto !important;
+    position: fixed !important;
+    top: 0 !important;
+    bottom: 0 !important;
+    left: 100% !important;
+    z-index: 9999 !important;
+    height: 100% !important;
+    background-color: #fff !important;
+    padding: 40px 30px 0 30px !important;
+    width: 270px !important;
+    -webkit-transition: margin 0.4s ease !important;
+    -o-transition: margin 0.4s ease !important;
+    transition: margin 0.4s ease !important;
+
+    box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
+      0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+  }
+
+  #main-menu.open {
+    margin-left: -270px !important;
+  }
+
+  #main-menu > ul > li {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  }
+
+  #main-menu > ul > li > .dropdown-toggle {
+    padding: 15px;
+  }
+}
+
+.mobile-sticky-header-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+}
+
+#main-menu.open + .mobile-sticky-header-overlay {
+  background: rgba(0, 0, 0, 0.4);
+  opacity: 1;
+  visibility: visible;
+  z-index: 9601;
+}
