@@ -11,6 +11,7 @@
   "license": "MIT",
   "dependencies": {
     "@material/elevation": "^0.36.1",
+    "flexslider": "^2.7.1",
     "jquery": "^3.2.1"
   },
   "devDependencies": {

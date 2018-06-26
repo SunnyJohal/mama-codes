@@ -12,6 +12,9 @@
 @import 'styles/footer';
 
 // Load plugin specific overrides.
+// Hero slider styles.
+@import 'styles/hero-slider/hero-slider';
+
 // Events Calendar custom styles.
 @import 'styles/tribe-events/base';
 @import 'styles/tribe-events/events-list';

@@ -32,7 +32,7 @@ Heres What the values mean:
 */
 
 /**
- * custom_slider_init()
+ * mama_codes_custom_slider_init()
  * 
  * DEFINE CUSTOM POSTYPE
  * This function is repsonsible for creating our custom 
@@ -41,7 +41,7 @@ Heres What the values mean:
  * @version 1.0
  * 
  */
-function custom_slider_init() {
+function mama_codes_custom_slider_init() {
 	//Create an array of labels that we can pass into the 'label' attribute of the $arg array (More Specific Definitions)
 	$slider_labels = array(
 		'name'              	=> __('Gallery', 'theme-translate'),              		// Name of this Posttype.
@@ -70,14 +70,14 @@ function custom_slider_init() {
 		'hierarchical'        => true, 						// Allows for Heirachy.
 		'menu_icon'           => 'dashicons-images-alt2',
 		'menu_position'       => 20, 							// MENU POSITION - If required use the useful notes above as a guide to change the menu position of this posttype.
-		'supports'            => array('title' ,'thumbnail', 'page-attributes')	// Tells wordpress what features to support for this Posttype.
+		'supports'            => array('title' ,'thumbnail', 'page-attributes', 'editor')	// Tells wordpress what features to support for this Posttype.
 		);
 		register_post_type('slides',$args); 		//Registers a new custom post type by passing in the name and the arguments defined above
 }
-add_action('init', 'custom_slider_init'); //Calls the function into WordPress at init (when WordPress admin boots up)
+add_action('init', 'mama_codes_custom_slider_init'); //Calls the function into WordPress at init (when WordPress admin boots up)
 
 /**
- * custom_slider_taxonomies()
+ * mama_codes_custom_slider_taxonomies()
  *
  * DEFINE CUSTOM POSTYPE TAXONOMIES
  * This function is repsonsible for creating our custom
@@ -87,7 +87,7 @@ add_action('init', 'custom_slider_init'); //Calls the function into WordPress at
  * @version 1.0
  *
  */
-function custom_slider_taxonomies() {
+function mama_codes_custom_slider_taxonomies() {
 	// SLIDER CATEGORIES	
 	// 1ST STEP: Define an array of labels for our custom taxonomy.
 	$sector_labels = array(
@@ -119,7 +119,7 @@ function custom_slider_taxonomies() {
 	// 		'rewrite' => array('slug' => 'sliders' ) 		// Allows wordpress to rewite this url.
 	// ));
 }
-add_action('init', 'custom_slider_taxonomies'); //Calls the function into wordpress at init (when wordpress admin boots up).
+add_action('init', 'mama_codes_custom_slider_taxonomies'); //Calls the function into wordpress at init (when wordpress admin boots up).
 
 
 /**
@@ -135,8 +135,9 @@ add_action('init', 'custom_slider_taxonomies'); //Calls the function into wordpr
  * 
  */
 function slider_meta_box( $post ) {
-	$link_text = get_post_meta( get_the_ID(), 'slider_meta_box_link', true );
-	$btn_text  = get_post_meta( get_the_ID(), 'slider_button_text', true );
+	$link_text           = get_post_meta( get_the_ID(), 'slider_meta_box_link', true );
+	$btn_text            = get_post_meta( get_the_ID(), 'slider_button_text', true );
+	$background_position = get_post_meta( get_the_ID(), 'slider_meta_box_background_position', true );
 	wp_nonce_field( 'my_meta_box_nonce', 'meta_box_nonce' );
 	?>
 	<p>
@@ -147,6 +148,15 @@ function slider_meta_box( $post ) {
 	<p>
 		<label for="slider_meta_box_link"><strong>Slide Link URL:</strong></label>
 		<input type="text" name="slider_meta_box_link" id="slider_meta_box_link" value="<?php echo $link_text; ?>" class="widefat"/>
+	</p>
+
+	<p>
+		<label for="slider_meta_box_background_position"><strong>Slide Background Position:</strong></label>
+		<select name="slider_meta_box_background_position" id="slider_meta_box_background_position">
+			<option value="center" <?php echo selected( $background_position, 'center' ); ?>>Center</option>
+			<option value="top" <?php echo selected( $background_position, 'top' ); ?>>Top</option>
+			<option value="bottom" <?php echo selected( $background_position, 'bottom' ); ?>>Bottom</option>
+		</select>
 	</p>
 	
 	<?php	
@@ -197,8 +207,13 @@ add_action( 'save_post', 'save_slider_meta_box' ); //Hook our function so that i
  * 
  */
 function add_slider_meta_box() {
-	add_meta_box( 'slider-meta-box', __('Please insert the link for this slide in the text box below', 'theme-translate'), 'slider_meta_box', 'slides', 'normal', 'high' );
+	add_meta_box( 
+		'slider-meta-box', 
+		__('Please insert the link for this slide in the text box below', 'theme-translate'), 
+		'slider_meta_box', 
+		'slides', 
+		'normal', 
+		'high'
+	);
 }
 add_action( 'add_meta_boxes', 'add_slider_meta_box' );
-
-?>

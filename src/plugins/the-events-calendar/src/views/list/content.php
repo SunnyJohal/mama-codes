@@ -49,6 +49,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<?php do_action( 'tribe_events_after_loop' ); ?>
 	<?php endif; ?>
 
+	<h1>fskdhbsjhf jshdf jhsd </h1>
+
 	<!-- List Footer -->
 	<?php do_action( 'tribe_events_before_footer' ); ?>
 	<div id="tribe-events-footer">

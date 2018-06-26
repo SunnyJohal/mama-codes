@@ -1,9 +1,12 @@
+// Vendor libs
+import 'flexslider';
 import 'jquery';
-import './style.scss';
-
-import Router from './util/Router';
+import './js/libs/hero-slider';
+// Theme files
 import common from './routes/common';
 import home from './routes/home';
+import './style.scss';
+import Router from './util/Router';
 
 /**
  * Populate Router instance with DOM routes
@@ -13,9 +16,11 @@ const routes = new Router({
   /** All pages */
   common,
   /** Home page */
-  home,
+  home
   /** About Us page, note the change from about-us to aboutUs. */
 });
 
 /** Load Events */
-jQuery(document).ready(() => routes.loadEvents());
+jQuery(document).ready($ => {
+  routes.loadEvents();
+});

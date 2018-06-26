@@ -87,7 +87,7 @@ $organizer = tribe_get_organizer();
 				</div><!-- .tribe-events-event-meta -->
 				<?php do_action( 'tribe_events_after_the_meta' ) ?>
 
-				<?php // tribe_get_template_part( 'modules/meta/map' ); ?>
+				<?php //tribe_get_template_part( 'modules/meta/map' ); ?>
 			</div>
 		</div>
 

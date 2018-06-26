@@ -30,6 +30,7 @@ if ( ! isset( $content_width ) ) {
  * @version 1.0.0
  *
  */
+require( get_stylesheet_directory() . '/includes/posttypes/slider.php' );
 require( get_stylesheet_directory() . '/includes/admin/class-tt-admin-login.php' );
 require( get_stylesheet_directory() . '/includes/frontend/class-tt-frontend.php' );
 require( get_stylesheet_directory() . '/includes/frontend/class-tt-template.php' );
@@ -47,6 +48,7 @@ require( get_stylesheet_directory() . '/includes/frontend/class-tt-tribe-events.
  * @version 1.0.0
  *
  */
+
 // Admin
 add_action( 'after_setup_theme', array( 'TT_Admin_Login', 'get_instance' ) );
 

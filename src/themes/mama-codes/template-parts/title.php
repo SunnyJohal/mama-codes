@@ -15,6 +15,8 @@ $context  = $frontend->get_context();
 $template = TT_Template::get_instance();
 
 if ( is_home() || is_front_page() ) {
+	get_template_part( 'template-parts/homepage-slider' );
+	get_template_part( 'template-parts/title-home' );
 	return;
 }
 ?>

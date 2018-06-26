@@ -379,7 +379,7 @@ function visualcomposerstarter_style() {
 	wp_enqueue_style( 'visualcomposerstarter-general' );
 	wp_enqueue_style( 'visualcomposerstarter-responsive' );
 	wp_enqueue_style( 'visualcomposerstarter-style' );
-	wp_enqueue_style( 'visualcomposerstarter-fonts' );
+	// wp_enqueue_style( 'visualcomposerstarter-fonts' );
 }
 add_action( 'wp_enqueue_scripts', 'visualcomposerstarter_style' );
 
