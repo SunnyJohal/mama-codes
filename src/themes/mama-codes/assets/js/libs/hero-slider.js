@@ -20,54 +20,39 @@
 
   HeroSlider.prototype.init = function() {
     var self = this;
-    //upload video (if not on mobile devices)
-    this.uploadVideo();
+
     //autoplay slider
     this.setAutoplay();
-    //listen for the click event on the slider navigation
-    this.navigation.addEventListener('click', function(event) {
-      if (event.target.tagName.toLowerCase() == 'div') return;
-      event.preventDefault();
-      var selectedSlide = event.target;
-      if (hasClass(event.target.parentElement, 'cd-selected')) return;
-      self.oldSlideIndex = self.newSlideIndex;
-      self.newSlideIndex = Array.prototype.indexOf.call(
-        self.navigationItems,
-        event.target.parentElement
-      );
-      self.newSlide();
-      self.updateNavigationMarker();
-      self.updateSliderNavigation();
-      self.setAutoplay();
+
+    // Listen for the click event on the slider navigation
+    $('.mc-slider-nav--next').on('click', e => {
+      e.preventDefault();
+      self.paginateNextSlide();
     });
 
+    $('.mc-slider-nav--prev').on('click', e => {
+      e.preventDefault();
+      self.paginatePrevSlide();
+    });
+
+    // Pause on hover.
     if (this.autoplay) {
+      $('.mc-slider-nav--next, .mc-slider-nav--prev').on('mouseenter', () => {
+        clearInterval(self.autoPlayId);
+      });
+
+      $('.mc-slider-nav--next, .mc-slider-nav--prev').on('mouseleave', () => {
+        self.setAutoplay();
+      });
+
       // on hover - pause autoplay
       this.element.addEventListener('mouseenter', function() {
         clearInterval(self.autoPlayId);
       });
+
       this.element.addEventListener('mouseleave', function() {
         self.setAutoplay();
       });
-    }
-  };
-
-  HeroSlider.prototype.uploadVideo = function() {
-    var videoSlides = this.element.getElementsByClassName('js-cd-bg-video');
-    for (var i = 0; i < videoSlides.length; i++) {
-      if (videoSlides[i].offsetHeight > 0) {
-        // if visible - we are not on a mobile device
-        var videoUrl = videoSlides[i].getAttribute('data-video');
-        videoSlides[i].innerHTML =
-          "<video loop><source src='" +
-          videoUrl +
-          ".mp4' type='video/mp4' /><source src='" +
-          videoUrl +
-          ".webm' type='video/webm'/></video>";
-        // if the visible slide has a video - play it
-        if (hasClass(videoSlides[i].parentElement, 'cd-hero__slide--selected'))
-          videoSlides[i].getElementsByTagName('video')[0].play();
-      }
     }
   };
 
@@ -81,6 +66,32 @@
     }
   };
 
+  HeroSlider.prototype.paginatePrevSlide = function() {
+    this.oldSlideIndex = this.newSlideIndex;
+    var self = this;
+
+    // if
+    if (this.newSlideIndex <= 0) {
+      this.newSlideIndex = this.slidesNumber - 1;
+      this.newSlide();
+    } else {
+      this.newSlideIndex -= 1;
+      this.newSlide();
+    }
+  };
+
+  HeroSlider.prototype.paginateNextSlide = function() {
+    this.oldSlideIndex = this.newSlideIndex;
+    var self = this;
+    if (this.newSlideIndex < this.slidesNumber - 1) {
+      this.newSlideIndex += 1;
+      this.newSlide();
+    } else {
+      this.newSlideIndex = 0;
+      this.newSlide();
+    }
+  };
+
   HeroSlider.prototype.autoplaySlider = function() {
     this.oldSlideIndex = this.newSlideIndex;
     var self = this;
@@ -91,9 +102,6 @@
       this.newSlideIndex = 0;
       this.newSlide();
     }
-
-    this.updateNavigationMarker();
-    this.updateSliderNavigation();
   };
 
   HeroSlider.prototype.newSlide = function(direction) {
@@ -136,19 +144,6 @@
     }
 
     this.checkVideo();
-  };
-
-  HeroSlider.prototype.updateNavigationMarker = function() {
-    removeClassPrefix(this.marker, 'item');
-    addClass(
-      this.marker,
-      'cd-hero__marker--item-' + (Number(this.newSlideIndex) + 1)
-    );
-  };
-
-  HeroSlider.prototype.updateSliderNavigation = function() {
-    removeClass(this.navigationItems[this.oldSlideIndex], 'cd-selected');
-    addClass(this.navigationItems[this.newSlideIndex], 'cd-selected');
   };
 
   HeroSlider.prototype.checkVideo = function() {

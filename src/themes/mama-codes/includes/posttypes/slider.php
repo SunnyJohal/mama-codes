@@ -70,7 +70,7 @@ function mama_codes_custom_slider_init() {
 		'hierarchical'        => true, 						// Allows for Heirachy.
 		'menu_icon'           => 'dashicons-images-alt2',
 		'menu_position'       => 20, 							// MENU POSITION - If required use the useful notes above as a guide to change the menu position of this posttype.
-		'supports'            => array('title' ,'thumbnail', 'page-attributes', 'editor')	// Tells wordpress what features to support for this Posttype.
+		'supports'            => array('title' ,'thumbnail', 'page-attributes')	// Tells wordpress what features to support for this Posttype.
 		);
 		register_post_type('slides',$args); 		//Registers a new custom post type by passing in the name and the arguments defined above
 }
@@ -135,11 +135,17 @@ add_action('init', 'mama_codes_custom_slider_taxonomies'); //Calls the function 
  * 
  */
 function slider_meta_box( $post ) {
+	$subtitle            = get_post_meta( get_the_ID(), 'slider_subtitle', true );
 	$link_text           = get_post_meta( get_the_ID(), 'slider_meta_box_link', true );
 	$btn_text            = get_post_meta( get_the_ID(), 'slider_button_text', true );
-	$background_position = get_post_meta( get_the_ID(), 'slider_meta_box_background_position', true );
+	$background_position = get_post_meta( get_the_ID(), 'slider_background_position', true );
 	wp_nonce_field( 'my_meta_box_nonce', 'meta_box_nonce' );
 	?>
+	<p>
+		<label for="slider_subtitle"><strong>Subtitle:</strong></label>
+		<input type="text" name="slider_subtitle" id="slider_subtitle" value="<?php echo $subtitle; ?>" class="widefat"/>
+	</p>
+
 	<p>
 		<label for="slider_button_text"><strong>Button Text:</strong></label>
 		<input type="text" name="slider_button_text" id="slider_button_text" value="<?php echo $btn_text; ?>" class="widefat"/>
@@ -152,7 +158,7 @@ function slider_meta_box( $post ) {
 
 	<p>
 		<label for="slider_meta_box_background_position"><strong>Slide Background Position:</strong></label>
-		<select name="slider_meta_box_background_position" id="slider_meta_box_background_position">
+		<select name="slider_meta_box_background_position" id="slider_meta_box_background_position" class="widefat">
 			<option value="center" <?php echo selected( $background_position, 'center' ); ?>>Center</option>
 			<option value="top" <?php echo selected( $background_position, 'top' ); ?>>Top</option>
 			<option value="bottom" <?php echo selected( $background_position, 'bottom' ); ?>>Bottom</option>
@@ -180,20 +186,29 @@ function save_slider_meta_box( $post_id )
 
 	// now we can actually save the data
 	$allowed = array(
+			'span',
 			'a' => array( 				// on allow a tags
 					'href' => array()	// and those anchors can only have href attribute
 			)
 	);
 
 	// Probably a good idea to make sure your data is set
-	if( isset( $_POST['slider_meta_box_link'] ) ) {
-		update_post_meta( $post_id, 'slider_meta_box_link', wp_kses( $_POST['slider_meta_box_link'], $allowed ) );
+	if ( isset( $_POST['slider_subtitle'] ) ) {
+		update_post_meta( $post_id, 'slider_subtitle', wp_kses( $_POST['slider_subtitle'], $allowed ) );
+	}
+
+	if ( isset( $_POST['slider_meta_box_link'] ) ) {
+		update_post_meta( $post_id, 'slider_meta_box_link', esc_url( $_POST['slider_meta_box_link'] ) );
+	}
+
+	if ( isset( $_POST['slider_meta_box_background_position'] ) ) {
+		update_post_meta( $post_id, 'slider_background_position', esc_attr( $_POST['slider_meta_box_background_position'] ) );
 	}
 
 	$btn_link = empty( $_POST['slider_button_text'] ) ? '' : esc_attr( $_POST['slider_button_text'] );
 	update_post_meta( $post_id, 'slider_button_text', $btn_link );
 }
-add_action( 'save_post', 'save_slider_meta_box' ); //Hook our function so that it runs when WordPress saves this posttype.
+add_action( 'save_post', 'save_slider_meta_box' );
 
 /**
  * add_slider_meta_box

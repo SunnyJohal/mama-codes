@@ -44,7 +44,7 @@ $organizer = tribe_get_organizer();
 		<!-- Event Title -->
 		<div class="col-sm-4">
 			<div class="mc-event--card--wrapper">
-				<?php do_action( 'tribe_events_before_the_event_title' ) ?>
+
 				<h3 class="tribe-events-list-event-title">
 					<a class="tribe-event-url" href="<?php echo esc_url( tribe_get_event_link() ); ?>" title="<?php the_title_attribute() ?>" rel="bookmark">
 						<?php the_title() ?>
@@ -54,7 +54,7 @@ $organizer = tribe_get_organizer();
 
 				<!-- Schedule & Recurrence Details -->
 				<div class="tribe-event-schedule-details">
-					<?php echo tribe_events_event_schedule_details() ?>
+					<?php echo str_replace( '@', 'at', tribe_events_event_schedule_details() ); ?>
 				</div>
 
 			</div>
@@ -93,21 +93,23 @@ $organizer = tribe_get_organizer();
 
 		<!-- Price & Call to Action -->
 		<div class="col-sm-4">
-			<!-- Event Cost -->
-			<?php if ( tribe_get_cost() ) : ?>
-				<div class="tribe-events-event-cost">
-					<span class="ticket-cost"><?php echo tribe_get_cost( null, true ); ?></span>
-					<?php
-					/**
-					 * Runs after cost is displayed in list style views
-					 *
-					 * @since 4.5
-					 */
-					do_action( 'tribe_events_inside_cost' )
-					?>
-				</div>
-			<?php endif; ?>
-			<a href="<?php echo esc_url( tribe_get_event_link() ); ?>" class="tribe-events-read-more btn btn-lg btn-success" rel="bookmark"><?php esc_html_e( 'Find out more', 'the-events-calendar' ) ?> &raquo;</a>
+			<div class="mc-event--card--wrapper">
+				<!-- Event Cost -->
+				<?php if ( tribe_get_cost() ) : ?>
+					<div class="tribe-events-event-cost">
+						<span class="ticket-cost"><?php echo tribe_get_cost( null, true ); ?></span>
+						<?php
+						/**
+						 * Runs after cost is displayed in list style views
+						 *
+						 * @since 4.5
+						 */
+						do_action( 'tribe_events_inside_cost' )
+						?>
+					</div>
+				<?php endif; ?>
+				<a href="<?php echo esc_url( tribe_get_event_link() ); ?>" class="tribe-events-read-more btn btn-lg btn-success" rel="bookmark"><?php esc_html_e( 'Book a block', 'the-events-calendar' ) ?></a>
+			</div>
 		</div>
 	</div>
 </div>

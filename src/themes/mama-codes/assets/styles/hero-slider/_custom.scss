@@ -1,0 +1,34 @@
+.cd-hero__slider {
+  list-style-type: none;
+}
+
+.mc-slider-nav--prev,
+.mc-slider-nav--next {
+  font-family: $custom_font;
+  font-weight: bold;
+  position: absolute;
+  top: 45%;
+  border-radius: 50%;
+  height: 38px;
+  width: 38px;
+  line-height: 1.9;
+  background: $mama_primary;
+  border-color: $mama_primary;
+  opacity: 0.5;
+
+  &:focus,
+  &:active,
+  &:hover {
+    background: $mama_primary !important;
+    border-color: $mama_primary !important;
+    opacity: 1;
+  }
+}
+
+.mc-slider-nav--prev {
+  left: 12px;
+}
+
+.mc-slider-nav--next {
+  right: 12px;
+}

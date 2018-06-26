@@ -16,3 +16,22 @@ h5,
 h6 {
   font-family: 'Brandon Grotesque Medium', $sans;
 }
+
+.entry-content p a,
+.comment-content p a,
+.entry-content ol a,
+.comment-content ol a,
+.entry-content ul a,
+.comment-content ul a,
+.entry-content table a,
+.comment-content table a,
+.entry-content datalist a,
+.comment-content datalist a,
+.entry-content blockquote a,
+.comment-content blockquote a,
+.entry-content dl a,
+.comment-content dl a,
+.entry-content address a,
+.comment-content address a {
+  border-bottom: none;
+}
