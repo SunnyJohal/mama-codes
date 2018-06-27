@@ -1,0 +1,74 @@
+.btn-sm,
+.btn-lg {
+  color: white;
+  font-family: $custom_font;
+  font-size: 13px;
+  border-radius: 1px;
+  text-transform: uppercase;
+  box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
+    0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+  font-weight: bold;
+}
+
+.btn-sm {
+  font-size: 11px;
+}
+
+.btn-lg {
+  line-height: 24px;
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
+.btn-success {
+  background: $mama_green;
+  border-color: $mama_green;
+  color: rgba(white, 0.87);
+
+  &:hover,
+  &:active,
+  &:focus {
+    background: darken($mama_green, 8%);
+    border-color: darken($mama_green, 8%);
+    color: rgba(white, 1);
+    box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
+      0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+  }
+}
+
+.btn-info {
+  background: $mama_blue;
+  border-color: $mama_blue;
+  color: rgba(white, 0.87);
+
+  &:hover,
+  &:active,
+  &:focus {
+    background: darken($mama_blue, 8%);
+    border-color: darken($mama_blue, 8%);
+    color: rgba(white, 1);
+    box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
+      0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+  }
+}
+
+.btn-danger {
+  background: $mama_red;
+  border-color: $mama_red;
+  color: rgba(white, 0.87);
+
+  &:hover,
+  &:active,
+  &:focus {
+    background: darken($mama_red, 8%);
+    border-color: darken($mama_red, 8%);
+    color: rgba(white, 1);
+    box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
+      0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+  }
+}
+
+a.btn-success,
+#tribe-events-content .tribe-events-read-more.btn {
+  color: white;
+}

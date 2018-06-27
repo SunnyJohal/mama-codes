@@ -44,12 +44,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 	<!-- Events Loop -->
 	<?php if ( have_posts() ) : ?>
-		<?php do_action( 'tribe_events_before_loop' ); ?>
-		<?php tribe_get_template_part( 'list/loop' ) ?>
-		<?php do_action( 'tribe_events_after_loop' ); ?>
+		<div class="row">
+			<div class="col-sm-12">
+				<?php do_action( 'tribe_events_before_loop' ); ?>
+				<?php tribe_get_template_part( 'list/loop' ) ?>
+				<?php do_action( 'tribe_events_after_loop' ); ?>
+			</div>
+		</div>
 	<?php else: ?>
 		<div class="row">
-			<div class="col-md-8 col-md-offset-2">
+			<div class="col-sm-12">
 				<h1>MAMA.codes is growing quickly!</h1>
 				<p>We're always looking for new places to start clubs and it is likely that we will be in your area soon. If you would like to be notified when a code club is available in your area, please leave your details below.</p>
 				<div class="custom-agile-crm--form">

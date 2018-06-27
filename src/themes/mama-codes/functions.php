@@ -31,6 +31,7 @@ if ( ! isset( $content_width ) ) {
  *
  */
 require( get_stylesheet_directory() . '/includes/posttypes/slider.php' );
+require( get_stylesheet_directory() . '/includes/posttypes/class-mama-testimonials.php' );
 require( get_stylesheet_directory() . '/includes/admin/class-tt-admin-login.php' );
 require( get_stylesheet_directory() . '/includes/frontend/class-tt-frontend.php' );
 require( get_stylesheet_directory() . '/includes/frontend/class-tt-template.php' );
@@ -56,6 +57,7 @@ add_action( 'after_setup_theme', array( 'TT_Admin_Login', 'get_instance' ) );
 add_action( 'after_setup_theme', array( 'TT_Frontend', 'get_instance' ) );
 add_action( 'after_setup_theme', array( 'TT_Template', 'get_instance' ) );
 add_action( 'after_setup_theme', array( 'TT_Tribe_Events', 'get_instance' ) );
+add_action( 'after_setup_theme', array( 'Mama_Testimonials', 'get_instance' ) );
 
 /**
  * Child Theme Specific Changes

@@ -28,3 +28,90 @@
   text-align: center;
   padding: 16px;
 }
+
+// Title
+.tribe-events-list .tribe-events-list-event-title {
+  font-size: 24px;
+  display: block;
+}
+
+.tribe-events-list .tribe-events-list-event-title a {
+  color: #333 !important;
+}
+
+.tribe-events-list .tribe-events-single-section-title {
+  font-size: 24px;
+}
+
+// Dates
+.mc-event--recurrance-text,
+.tribe-event-schedule-details {
+  font-family: $custom_font;
+  display: inline-block;
+  text-transform: uppercase;
+  letter-spacing: 0;
+  font-weight: bold;
+}
+
+.mc-event--recurrance-text {
+  color: $mama_blue;
+  padding-right: 6px;
+  border-right: 1px solid #eeeeee;
+}
+
+.tribe-event-schedule-details {
+  color: $mama_red;
+}
+
+// Table Fields
+.tribe-events-list table {
+  margin-bottom: 0;
+}
+
+// Area Fields
+.mc-event--area .mc-event--area-heading {
+  font-size: 24px;
+  display: inline-block;
+  margin-right: 6px;
+  margin-bottom: 0;
+}
+
+// Address Fields
+.tribe-events-list .mc-event--card-address .tribe-address br {
+  display: none;
+}
+
+.tribe-events-list .mc-event--card-address .tribe-events-venue-details a {
+  color: #575757 !important;
+}
+
+.tribe-events-list
+  .mc-event--card-address
+  .tribe-events-venue-details
+  a.tribe-events-gmap {
+  color: $mama_primary !important;
+}
+
+// CTA
+.tribe-events-list .mc-event--card-cta .mc-event--card--wrapper {
+  background: #f5f5f5;
+  border-top: 1px solid rgba(black, 0.1);
+  display: flex;
+  justify-content: space-between;
+}
+
+.tribe-events-list .mc-event--card-cta .tribe-events-event-cost {
+  margin: 0;
+}
+
+.tribe-events-list .mc-event--card-cta .tribe-events-event-cost span {
+  background: transparent;
+  border-color: rgba(black, 0.1);
+  font-size: 20px;
+  margin: 0;
+  color: rgba(black, 0.64);
+}
+
+.tribe-events-list .mc-event--card-cta .tribe-events-read-more {
+  margin: 0;
+}
