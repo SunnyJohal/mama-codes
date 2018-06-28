@@ -9,6 +9,10 @@
  * @author Virginia Dooley <vcdooley@gmail.com>
  * 
  */
+$login_url = wp_login_url();
+$logout_url = wp_logout_url();
+
+$action_link = is_user_logged_in() ? "<a href='{$logout_url}'>Logout</a>" : "<a href='{$login_url}'>Login</a>";
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
@@ -56,10 +60,12 @@
 					<div id="main-menu">
 						<div class="button-close"><span class="vct-icon-close"></span></div>
 						<?php
+
 								wp_nav_menu( array(
 									'theme_location' => is_user_logged_in() ? 'primary_logged_in' : 'primary',
 									'menu_class'     => 'nav navbar-nav',
 									'container'      => '',
+									'items_wrap'     => '<ul id="%1$s" class="%2$s">%3$s<li>' . $action_link . '</li></ul>',
 									) );
 									?>
 						</div><!--#main-menu-->
