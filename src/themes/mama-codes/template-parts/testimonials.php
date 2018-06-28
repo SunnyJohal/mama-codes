@@ -11,12 +11,12 @@
  */
 
 // Get post metas
-$background      = get_post_meta( get_the_ID(), '_diamond_testimonial_background', true );
-$heading         = get_post_meta( get_the_ID(), '_diamond_testimonial_headline', true );
-$category        = get_post_meta( get_the_ID(), '_diamond_testimonial_category_id', true );
-$interval        = get_post_meta( get_the_ID(), '_diamond_testimonial_interval', true );
-$show_thumbnails = get_post_meta( get_the_ID(), '_diamond_testimonial_show_thumbnails', true );
-$hide_author     = get_post_meta( get_the_ID(), '_diamond_testimonial_hide_author', true );
+$background      = get_post_meta( get_the_ID(), '_mama_testimonial_background', true );
+$heading         = get_post_meta( get_the_ID(), '_mama_testimonial_headline', true );
+$category        = get_post_meta( get_the_ID(), '_mama_testimonial_category_id', true );
+$interval        = get_post_meta( get_the_ID(), '_mama_testimonial_interval', true );
+$show_thumbnails = get_post_meta( get_the_ID(), '_mama_testimonial_show_thumbnails', true );
+$hide_author     = get_post_meta( get_the_ID(), '_mama_testimonial_hide_author', true );
 
 
 // Sanitize values
@@ -35,10 +35,10 @@ $params = array(
 	'orderby'        => 'menu_order',
 	'posts_per_page' => -1,
 	'post_status'    => 'publish',
-	'post_type'      => 'diamond_testimonial',
+	'post_type'      => 'mama_testimonial',
 	'tax_query'      => array(
 							array(
-								'taxonomy' => 'diamond_testimonial_category',
+								'taxonomy' => 'mama_testimonial_category',
 								'terms'    => $category
 							)
 						),
@@ -57,11 +57,11 @@ $testimonial_count = 0;
 ?>
 <?php if ( $the_query->have_posts() ) : ?>
 <!-- CARD  -->
-<div class="diamond-testimonial-full-width vf-card--bg vf-card-bg--<?php echo "vf-{$background}"; ?>">
+<div class="mama-testimonial-full-width vf-card--bg vf-card-bg--<?php echo "vf-{$background}"; ?>">
 	<section class="vf-card vf-feature-grid-2 <?php echo "vf-{$background}"; ?>" style="">
 		<div class="container">
 			<?php if ( $heading ) : ?>
-				<div class="row tt-card--heading-row tt-typography--text-center mb32 mb-xs-24">
+				<div class="row tt-card--heading-row text-center mb32 mb-xs-24">
 					<div class="col-md-10 col-md-push-1 tt-card--heading">
 						<?php if ( $heading ): ?>
 							<h1 class="tt-card--headline tt-typography--font-medium mt0 mb8"><?php echo $heading; ?></h1>

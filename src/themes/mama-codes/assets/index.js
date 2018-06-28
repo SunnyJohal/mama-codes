@@ -1,4 +1,6 @@
 // Vendor libs
+import 'bootstrap/js/carousel';
+import 'bootstrap/js/transition';
 import 'flexslider';
 import 'jquery';
 import './js/libs/hero-slider';

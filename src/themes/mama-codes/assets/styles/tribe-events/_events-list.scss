@@ -115,3 +115,9 @@
 .tribe-events-list .mc-event--card-cta .tribe-events-read-more {
   margin: 0;
 }
+
+@media screen and (max-width: 768px) {
+  .tribe-events-sub-nav li a {
+    background: transparent !important;
+  }
+}

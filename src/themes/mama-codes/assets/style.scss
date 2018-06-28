@@ -3,6 +3,7 @@
 
 // Load theme specific components.
 @import 'styles/global-vars';
+@import 'styles/overrides';
 @import 'styles/base';
 @import 'styles/layout';
 @import 'styles/typography';
@@ -11,6 +12,7 @@
 @import 'styles/title';
 @import 'styles/footer';
 @import 'styles/buttons';
+@import 'styles/testimonials';
 
 // Load plugin specific overrides.
 // Hero slider styles.

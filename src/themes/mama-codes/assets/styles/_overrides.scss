@@ -1,0 +1,39 @@
+// Contains the parent theme overrides.
+.blue-button {
+  background-color: $mama_blue;
+  border-radius: 1px;
+  color: rgba(white, 0.87);
+  font-family: $custom_font;
+}
+.blue-button:hover,
+.blue-button:focus {
+  color: rgba(white, 1);
+  background-color: darken($mama_blue, 8%);
+}
+
+#main-menu > ul > li > a {
+  padding: 12px 0;
+  font-family: $custom_font;
+  color: #fff;
+}
+
+.entry-full-content .entry-author-data .author-name {
+  font-family: $sans;
+}
+
+.nav-links.post-navigation a .post-title {
+  font-family: $sans;
+}
+
+.comments-area .comment-list .comment-author {
+  font-family: $sans;
+}
+
+.comments-area .comment-form-comment label,
+.comments-area .comment-list .reply a,
+.comments-area .comment-form-author label,
+.comments-area .comment-form-email label,
+.comments-area .comment-form-url label,
+.comments-area .form-submit input[type='submit'] {
+  font-family: $sans;
+}

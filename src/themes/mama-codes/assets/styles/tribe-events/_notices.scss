@@ -1,7 +1,15 @@
 .tribe-events-notices {
-  background: $mama_blue;
-  border-color: $mama_blue;
-  text-shadow: none;
-  color: rgba(white, 0.87);
-  border-radius: 1px;
+  background: $mama_blue !important;
+  border-color: $mama_blue !important;
+  text-shadow: none !important;
+  color: rgba(white, 0.87) !important;
+  border-radius: 1px !important;
+}
+
+.tribe-events-notices ul {
+  list-style: none;
+}
+
+.tribe-events-notices li:before {
+  display: none;
 }
