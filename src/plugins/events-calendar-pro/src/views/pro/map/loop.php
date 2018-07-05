@@ -22,7 +22,6 @@ $more = false;
 ?>
 
 <h2 class="tribe-events-visuallyhidden"><?php printf( esc_html__( 'List of %s', 'the-events-calendar' ), tribe_get_event_label_plural() ); ?></h2>
-
 <?php while ( have_posts() ) : the_post(); ?>
 	<?php do_action( 'tribe_events_inside_before_loop' ); ?>
 
